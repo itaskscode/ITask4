@@ -2,9 +2,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Task4.Data.DbContexts;
 
 #nullable disable
@@ -12,7 +12,7 @@ using Task4.Data.DbContexts;
 namespace Task4.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230531131159_f")]
+    [Migration("20230610102521_f")]
     partial class f
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,9 +20,9 @@ namespace Task4.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.12")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Task4.Domain.Entities.User", b =>
                 {
@@ -30,31 +30,31 @@ namespace Task4.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastLoginTime")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateTime?>("LastLoginTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -64,9 +64,8 @@ namespace Task4.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4896),
+                            CreatedAt = new DateTime(2023, 6, 10, 10, 25, 20, 931, DateTimeKind.Utc).AddTicks(8846),
                             Email = "abdulloh@itransition.com",
-                            LastLoginTime = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4898),
                             Name = "Abdulloh Axmadjonov",
                             Password = "1234",
                             Status = 1
@@ -74,9 +73,8 @@ namespace Task4.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4900),
+                            CreatedAt = new DateTime(2023, 6, 10, 10, 25, 20, 931, DateTimeKind.Utc).AddTicks(8851),
                             Email = "p.lebedev@itransition.com",
-                            LastLoginTime = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4901),
                             Name = "Pavel Lebedev",
                             Password = "1234",
                             Status = 1
@@ -84,9 +82,8 @@ namespace Task4.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4902),
+                            CreatedAt = new DateTime(2023, 6, 10, 10, 25, 20, 931, DateTimeKind.Utc).AddTicks(8857),
                             Email = "risolass@gmail.com",
-                            LastLoginTime = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4903),
                             Name = "Risolat Nurillaeva",
                             Password = "1234",
                             Status = 1
@@ -94,9 +91,8 @@ namespace Task4.Data.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4905),
+                            CreatedAt = new DateTime(2023, 6, 10, 10, 25, 20, 931, DateTimeKind.Utc).AddTicks(8859),
                             Email = "jasur@icoud.com",
-                            LastLoginTime = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4906),
                             Name = "Jasur Rasulov",
                             Password = "1234",
                             Status = 1
@@ -104,9 +100,8 @@ namespace Task4.Data.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4907),
+                            CreatedAt = new DateTime(2023, 6, 10, 10, 25, 20, 931, DateTimeKind.Utc).AddTicks(8861),
                             Email = "normatov@gmail.com",
-                            LastLoginTime = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4908),
                             Name = "Umar Normvatov",
                             Password = "1234",
                             Status = 1
@@ -114,9 +109,8 @@ namespace Task4.Data.Migrations
                         new
                         {
                             Id = 6L,
-                            CreatedAt = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4909),
+                            CreatedAt = new DateTime(2023, 6, 10, 10, 25, 20, 931, DateTimeKind.Utc).AddTicks(8863),
                             Email = "buggy@gmail.com",
-                            LastLoginTime = new DateTime(2023, 5, 31, 13, 11, 59, 85, DateTimeKind.Utc).AddTicks(4910),
                             Name = "Buggy Anvarjonov",
                             Password = "1234",
                             Status = 1

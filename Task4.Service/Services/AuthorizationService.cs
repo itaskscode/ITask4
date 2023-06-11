@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-using System.Text;
 using Task4.Data.Interfaces;
 using Task4.Domain.Enums;
+using System.Text;
 
 namespace Task4.Web.Helpers;
 

@@ -17,9 +17,9 @@ public class AccountController : Controller
     }
 
     // GET: Registration
-    public ActionResult Registration()
+    public ActionResult Registration(UserCreationDto creationDto)
     {
-        return View();
+        return View("Registration", creationDto);
     }
 
     // POST: Register
@@ -33,14 +33,14 @@ public class AccountController : Controller
 
             if (createdUser is null)
             {
-                ModelState.AddModelError("", "This email is already used.");
-                return View(creationDto);
+                ModelState.AddModelError("error", "This email is already used.");
+                return Registration(creationDto);
             }
 
             return RedirectToAction("Login");
         }
 
-        return View(creationDto);
+        return Registration(creationDto);
     }
 
     // GET: Login
@@ -60,12 +60,12 @@ public class AccountController : Controller
 
             if (token is null)
             {
-                ModelState.AddModelError("", "Invalid password or email.");
+                ModelState.AddModelError("error", "Invalid password or email.");
                 return View(model);
             }
             else if (token == "b")
             {
-                ModelState.AddModelError("", "Your account was blocked!");
+                ModelState.AddModelError("error", "Your account was blocked!");
                 return View(model);
             }
 

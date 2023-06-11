@@ -54,6 +54,16 @@
         <div class="login-container">
             <h2>Create an Account</h2>
 
+            @{
+                var modelError = ViewData.ModelState["error"];
+                if (modelError != null && modelError.Errors.Count > 0)
+                {
+                    var errorMessage = modelError.Errors[0].ErrorMessage;
+                    <p class="text-danger">@errorMessage</p>
+                }
+            }
+
+
             <form asp-action="Register" asp-controller="Account" method="post">
                 <div class="form-group">
                     <input type="text" asp-for="Name" class="form-control" placeholder="Name" required />
@@ -68,7 +78,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-login btn-block" style="background-color: hsl(0, 0%, 20%); color: white;">Login</button>
+                    <button type="submit" class="btn btn-login btn-block" style="background-color: hsl(0, 0%, 20%); color: white;">Register</button>
                 </div>
             </form>
 
